@@ -10,6 +10,8 @@ import (
 	"time"
 
 	lru "github.com/hashicorp/golang-lru"
+	"github.com/prometheus/client_golang/prometheus"
+	"github.com/prometheus/client_golang/prometheus/promauto"
 	"github.com/protolambda/eth2api"
 	"github.com/protolambda/eth2api/client/beaconapi"
 	"github.com/protolambda/eth2api/client/validatorapi"
@@ -42,6 +44,21 @@ type Client struct {
 	validatorCache *lru.Cache
 }
 
+var (
+	proposerCacheGauge = promauto.NewGauge(prometheus.GaugeOpts{
+		Name: "relay_monitor_proposer_cache_length",
+		Help: "The size of the proposer cache",
+	})
+	executionCacheGauge = promauto.NewGauge(prometheus.GaugeOpts{
+		Name: "relay_monitor_execution_cache_length",
+		Help: "The size of the execution cache",
+	})
+	validatorCacheGauge = promauto.NewGauge(prometheus.GaugeOpts{
+		Name: "relay_monitor_validator_cache_length",
+		Help: "The size of the validator cache",
+	})
+)
+
 func NewClient(ctx context.Context, endpoint string, logger *zap.Logger, currentSlot types.Slot, currentEpoch types.Epoch, slotsPerEpoch uint64) (*Client, error) {
 	httpClient := &eth2api.Eth2HttpClient{
 		Addr: endpoint,
@@ -58,16 +75,19 @@ func NewClient(ctx context.Context, endpoint string, logger *zap.Logger, current
 	if err != nil {
 		return nil, err
 	}
+	proposerCacheGauge.Set(0.0)
 
 	executionCache, err := lru.New(cacheSize)
 	if err != nil {
 		return nil, err
 	}
+	executionCacheGauge.Set(0.0)
 
 	validatorCache, err := lru.New(cacheSize)
 	if err != nil {
 		return nil, err
 	}
+	validatorCacheGauge.Set(0.0)
 
 	client := &Client{
 		logger:         logger,
@@ -189,6 +209,7 @@ func (c *Client) FetchProposers(ctx context.Context, epoch types.Epoch) error {
 			publicKey: types.PublicKey(duty.Pubkey),
 			index:     uint64(duty.ValidatorIndex),
 		})
+		proposerCacheGauge.Add(1.0)
 	}
 
 	return nil
@@ -201,6 +222,7 @@ func (c *Client) backFillExecutionHash(slot types.Slot) (types.Hash, error) {
 		if err == nil {
 			for i := targetSlot; i < slot; i++ {
 				c.executionCache.Add(i+1, executionHash)
+				executionCacheGauge.Add(1.0)
 			}
 			return executionHash, nil
 		}
@@ -235,6 +257,7 @@ func (c *Client) FetchExecutionHash(ctx context.Context, slot types.Slot) (types
 
 	// TODO handle reorgs, etc.
 	c.executionCache.Add(slot, executionHash)
+	executionCacheGauge.Add(1.0)
 
 	return executionHash, nil
 }
@@ -289,6 +312,7 @@ func (c *Client) FetchValidators(ctx context.Context) error {
 	for _, validator := range response {
 		publicKey := validator.Validator.Pubkey
 		c.validatorCache.Add(publicKey, validator)
+		validatorCacheGauge.Add(1.0)
 	}
 
 	return nil
