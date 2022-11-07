@@ -9,6 +9,7 @@ import (
 	"strings"
 	"time"
 
+	"github.com/Metrika-Inc/relay-monitor/pkg/types"
 	lru "github.com/hashicorp/golang-lru"
 	"github.com/protolambda/eth2api"
 	"github.com/protolambda/eth2api/client/beaconapi"
@@ -16,7 +17,6 @@ import (
 	"github.com/protolambda/zrnt/eth2/beacon/bellatrix"
 	"github.com/protolambda/zrnt/eth2/beacon/common"
 	"github.com/r3labs/sse/v2"
-	"github.com/ralexstokes/relay-monitor/pkg/types"
 	"go.uber.org/zap"
 )
 

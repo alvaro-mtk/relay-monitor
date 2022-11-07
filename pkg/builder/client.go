@@ -7,8 +7,8 @@ import (
 	"net/url"
 	"time"
 
+	"github.com/Metrika-Inc/relay-monitor/pkg/types"
 	go_boost_types "github.com/flashbots/go-boost-utils/types"
-	"github.com/ralexstokes/relay-monitor/pkg/types"
 )
 
 const clientTimeoutSec = 2

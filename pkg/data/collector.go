@@ -5,10 +5,10 @@ import (
 	"encoding/json"
 	"time"
 
-	"github.com/ralexstokes/relay-monitor/pkg/builder"
-	"github.com/ralexstokes/relay-monitor/pkg/consensus"
-	"github.com/ralexstokes/relay-monitor/pkg/output"
-	"github.com/ralexstokes/relay-monitor/pkg/types"
+	"github.com/Metrika-Inc/relay-monitor/pkg/builder"
+	"github.com/Metrika-Inc/relay-monitor/pkg/consensus"
+	"github.com/Metrika-Inc/relay-monitor/pkg/output"
+	"github.com/Metrika-Inc/relay-monitor/pkg/types"
 	"go.uber.org/zap"
 )
 

@@ -3,7 +3,7 @@ package store
 import (
 	"context"
 
-	"github.com/ralexstokes/relay-monitor/pkg/types"
+	"github.com/Metrika-Inc/relay-monitor/pkg/types"
 )
 
 func GetLatestValidatorRegistration(ctx context.Context, store Storer, publicKey *types.PublicKey) (*types.SignedValidatorRegistration, error) {

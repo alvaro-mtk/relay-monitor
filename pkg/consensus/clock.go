@@ -4,7 +4,7 @@ import (
 	"context"
 	"time"
 
-	"github.com/ralexstokes/relay-monitor/pkg/types"
+	"github.com/Metrika-Inc/relay-monitor/pkg/types"
 )
 
 type Clock struct {

@@ -3,7 +3,7 @@ package builder_test
 import (
 	"testing"
 
-	"github.com/ralexstokes/relay-monitor/pkg/builder"
+	"github.com/Metrika-Inc/relay-monitor/pkg/builder"
 )
 
 const (

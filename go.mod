@@ -1,4 +1,4 @@
-module github.com/ralexstokes/relay-monitor
+module github.com/Metrika-Inc/relay-monitor
 
 go 1.19
 
@@ -8,6 +8,7 @@ require (
 	github.com/protolambda/eth2api v0.0.0-20220822011642-f7735dd471e0
 	github.com/protolambda/zrnt v0.28.0
 	github.com/r3labs/sse/v2 v2.8.1
+	github.com/Metrika-Inc/relay-monitor v0.0.0-20221102194749-faf9f7f19f30
 	go.uber.org/zap v1.22.0
 	gopkg.in/yaml.v3 v3.0.1
 )

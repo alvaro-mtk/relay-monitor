@@ -9,12 +9,12 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/ralexstokes/relay-monitor/pkg/analysis"
-	"github.com/ralexstokes/relay-monitor/pkg/consensus"
-	"github.com/ralexstokes/relay-monitor/pkg/crypto"
-	"github.com/ralexstokes/relay-monitor/pkg/data"
-	"github.com/ralexstokes/relay-monitor/pkg/store"
-	"github.com/ralexstokes/relay-monitor/pkg/types"
+	"github.com/Metrika-Inc/relay-monitor/pkg/analysis"
+	"github.com/Metrika-Inc/relay-monitor/pkg/consensus"
+	"github.com/Metrika-Inc/relay-monitor/pkg/crypto"
+	"github.com/Metrika-Inc/relay-monitor/pkg/data"
+	"github.com/Metrika-Inc/relay-monitor/pkg/store"
+	"github.com/Metrika-Inc/relay-monitor/pkg/types"
 	"go.uber.org/zap"
 )
 

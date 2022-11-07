@@ -4,10 +4,10 @@ import (
 	"context"
 	"sync"
 
-	"github.com/ralexstokes/relay-monitor/pkg/builder"
-	"github.com/ralexstokes/relay-monitor/pkg/data"
-	"github.com/ralexstokes/relay-monitor/pkg/store"
-	"github.com/ralexstokes/relay-monitor/pkg/types"
+	"github.com/Metrika-Inc/relay-monitor/pkg/builder"
+	"github.com/Metrika-Inc/relay-monitor/pkg/data"
+	"github.com/Metrika-Inc/relay-monitor/pkg/store"
+	"github.com/Metrika-Inc/relay-monitor/pkg/types"
 	"go.uber.org/zap"
 )
 

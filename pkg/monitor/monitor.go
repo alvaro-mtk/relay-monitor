@@ -5,13 +5,13 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/ralexstokes/relay-monitor/pkg/analysis"
-	"github.com/ralexstokes/relay-monitor/pkg/api"
-	"github.com/ralexstokes/relay-monitor/pkg/builder"
-	"github.com/ralexstokes/relay-monitor/pkg/consensus"
-	"github.com/ralexstokes/relay-monitor/pkg/data"
-	"github.com/ralexstokes/relay-monitor/pkg/output"
-	"github.com/ralexstokes/relay-monitor/pkg/store"
+	"github.com/Metrika-Inc/relay-monitor/pkg/analysis"
+	"github.com/Metrika-Inc/relay-monitor/pkg/api"
+	"github.com/Metrika-Inc/relay-monitor/pkg/builder"
+	"github.com/Metrika-Inc/relay-monitor/pkg/consensus"
+	"github.com/Metrika-Inc/relay-monitor/pkg/data"
+	"github.com/Metrika-Inc/relay-monitor/pkg/output"
+	"github.com/Metrika-Inc/relay-monitor/pkg/store"
 	"go.uber.org/zap"
 )
 

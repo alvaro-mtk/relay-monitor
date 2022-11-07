@@ -3,7 +3,7 @@ package data
 import (
 	"time"
 
-	"github.com/ralexstokes/relay-monitor/pkg/types"
+	"github.com/Metrika-Inc/relay-monitor/pkg/types"
 )
 
 type Event struct {

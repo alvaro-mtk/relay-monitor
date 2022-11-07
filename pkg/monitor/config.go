@@ -1,6 +1,6 @@
 package monitor
 
-import "github.com/ralexstokes/relay-monitor/pkg/api"
+import "github.com/Metrika-Inc/relay-monitor/pkg/api"
 
 type NetworkConfig struct {
 	Name           string `yaml:"name"`

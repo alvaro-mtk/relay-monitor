@@ -1,6 +1,6 @@
 package analysis
 
-import "github.com/ralexstokes/relay-monitor/pkg/types"
+import "github.com/Metrika-Inc/relay-monitor/pkg/types"
 
 type FaultRecord = map[types.PublicKey]*Faults
 

@@ -3,7 +3,7 @@ package store
 import (
 	"context"
 
-	"github.com/ralexstokes/relay-monitor/pkg/types"
+	"github.com/Metrika-Inc/relay-monitor/pkg/types"
 )
 
 type Storer interface {
