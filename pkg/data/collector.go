@@ -34,18 +34,36 @@ func NewCollector(zapLogger *zap.Logger, relays []*builder.Client, clock *consen
 	}
 }
 
+func (c *Collector) parserOutputBid(event *BidEvent, duration *uint64, relay *builder.Client) (out *BidOutput) {
+
+	logger := c.logger.Sugar()
+	logger.Warnw("event", "event", event)
+	logger.Warnw("duration", "duration", duration)
+	logger.Warnw("relay", "relay", relay)
+	return &BidOutput{
+		Timestamp: time.Unix(c.clock.SlotInSeconds(event.Context.Slot), 0),
+		Rtt:       *duration,
+		Bid: BidEventOutput{
+			Context: BidContextOutput{
+				Slot:              event.Context.Slot,
+				ParentHash:        event.Context.ParentHash.String(),
+				ProposerPublicKey: event.Context.ProposerPublicKey.String(),
+				RelayPublicKey:    event.Context.RelayPublicKey.String(),
+				Error:             event.Context.Error,
+			},
+			Bid: event.Bid,
+		},
+		Relay:  relay.Endpoint(),
+		Region: c.region,
+	}
+}
+
 func (c *Collector) outputBid(event *BidEvent, duration *uint64, relay *builder.Client) {
 
 	go func() {
 		logger := c.logger.Sugar()
 
-		out := &BidOutput{
-			Timestamp: time.Unix(c.clock.SlotInSeconds(event.Context.Slot), 0),
-			Rtt:       *duration,
-			Bid:       *event,
-			Relay:     relay.Endpoint(),
-			Region:    c.region,
-		}
+		out := c.parserOutputBid(event, duration, relay)
 
 		outBytes, err := json.Marshal(out)
 		if err != nil {

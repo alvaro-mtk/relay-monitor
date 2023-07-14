@@ -10,6 +10,21 @@ type Event struct {
 	Payload any
 }
 
+type BidContextOutput struct {
+	Slot              uint64 `json:"slot,omitempty"`
+	ParentHash        string `json:",omitempty"`
+	ProposerPublicKey string `json:",omitempty"`
+	RelayPublicKey    string `json:",omitempty"`
+	Error             error  `json:",omitempty"`
+}
+
+type BidEventOutput struct {
+	Context BidContextOutput `json:",omitempty"`
+	Bid     *types.Bid       `json:",omitempty"`
+	// A `nil` `Bid` indicates absence for the given `Context`
+
+}
+
 type BidEvent struct {
 	Context *types.BidContext `json:",omitempty"`
 	Bid     *types.Bid        `json:",omitempty"`
@@ -26,11 +41,11 @@ type AuctionTranscriptEvent struct {
 }
 
 type BidOutput struct {
-	Timestamp time.Time `json:",omitempty"`
-	Rtt       uint64    `json:",omitempty"`
-	Relay     string    `json:",omitempty"`
-	Region    string    `json:",omitempty"`
-	Bid       BidEvent  `json:",omitempty"`
+	Timestamp time.Time      `json:",omitempty"`
+	Rtt       uint64         `json:",omitempty"`
+	Relay     string         `json:",omitempty"`
+	Region    string         `json:",omitempty"`
+	Bid       BidEventOutput `json:",omitempty"`
 }
 
 type ValidationOutput struct {
